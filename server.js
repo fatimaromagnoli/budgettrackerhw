@@ -15,9 +15,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://user:password1@ds049467.mlab.com:49467/heroku_lx01qq9q", {
-  useNewUrlParser: true,
-  useFindAndModify: false
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/progressiveBudget";
+
+mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 
 // routes here
